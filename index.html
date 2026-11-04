@@ -1,55 +1,59 @@
 <!DOCTYPE html>
 <html lang="it">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mario Rossi — Portfolio</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-  </head>
-  <body>
 
-    <header id="site-header">
-      <h1>Mario Rossi</h1>
-      <p class="tagline"><strong>Studente Full Stack</strong> — corso Epicode 2026</p>
-      <nav>
-        <ul>
-          <li><a href="#chi-sono">Chi sono</a></li>
-          <li><a href="#competenze">Competenze</a></li>
-          <li><a href="#esperienze">Esperienze</a></li>
-          <li><a href="#progetti">Progetti</a></li>
-          <li><a href="#contatti">Contatti</a></li>
-        </ul>
-      </nav>
-    </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mario Rossi — Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
 
-    <main>
+<body>
 
-      <section id="chi-sono">
-        <h2>Chi sono</h2>
-        <div class="bio">
-          <img class="avatar" src="https://placehold.co/200x200" alt="Foto profilo di Mario Rossi">
-          <div class="text">
-            <p>Mi chiamo Mario Rossi e sto imparando a programmare. Studio sviluppo web con <strong>Epicode</strong> e ogni giorno aggiungo qualcosa a questa pagina.</p>
-            <p>Vivo a Milano. Ho una formazione precedente in <em>lettere</em> e ora sto cambiando settore. Cerco un primo ruolo come sviluppatore frontend.</p>
-          </div>
+  <header id="site-header">
+    <h1>Mario Rossi</h1>
+    <p class="tagline"><strong>Studente Full Stack</strong> — corso Epicode 2026</p>
+    <nav>
+      <ul>
+        <li><a href="#chi-sono">Chi sono</a></li>
+        <li><a href="#competenze">Competenze</a></li>
+        <li><a href="#esperienze">Esperienze</a></li>
+        <li><a href="#progetti">Progetti</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="chi-sono">
+      <h2>Chi sono</h2>
+      <div class="bio">
+        <img class="avatar" src="https://placehold.co/200x200" alt="Foto profilo di Mario Rossi">
+        <div class="text">
+          <p>Mi chiamo Mario Rossi e sto imparando a programmare. Studio sviluppo web con <strong>Epicode</strong> e
+            ogni giorno aggiungo qualcosa a questa pagina.</p>
+          <p>Vivo a Milano. Ho una formazione precedente in <em>lettere</em> e ora sto cambiando settore. Cerco un primo
+            ruolo come sviluppatore frontend.</p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="competenze">
-        <h2>Competenze</h2>
-        <p>Le tecnologie che vedo durante le prime settimane di corso.</p>
-        <ul class="skill-list">
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>Git e GitHub</li>
-          <li>Visual Studio Code</li>
-        </ul>
-      </section>
+    <section id="competenze">
+      <h2>Competenze</h2>
+      <p>Le tecnologie che vedo durante le prime settimane di corso.</p>
+      <ul class="skill-list">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>Git e GitHub</li>
+        <li>Visual Studio Code</li>
+      </ul>
+    </section>
 
-      <section id="esperienze">
-        <h2>Esperienze</h2>
-        <p>Un riepilogo del mio percorso formativo e lavorativo recente.</p>
-        <div class="table-wrapper">
+    <section id="esperienze">
+      <h2>Esperienze</h2>
+      <p>Un riepilogo del mio percorso formativo e lavorativo recente.</p>
+      <div class="table-wrapper">
         <table>
           <caption>Esperienze formative e lavorative</caption>
           <thead>
@@ -77,93 +81,96 @@
             </tr>
           </tbody>
         </table>
-        </div>
-      </section>
-
-      <section id="progetti">
-        <h2>Progetti</h2>
-        <p>I lavori fatti durante le prime settimane di corso.</p>
-
-        <div class="projects-grid">
-          <article class="project">
-            <h3>Pagina ricetta</h3>
-            <p>Una pagina con titolo, ingredienti e procedura. Esercizio di markup semantico applicato a un contenuto reale.</p>
-            <p><a href="https://github.com/mariorossi/ricetta" target="_blank">Vedi su GitHub</a></p>
-          </article>
-
-          <article class="project">
-            <h3>Card di presentazione</h3>
-            <p>Un biglietto digitale con nome, ruolo e link ai social.</p>
-            <p><a href="https://github.com/mariorossi/card" target="_blank">Vedi su GitHub</a></p>
-          </article>
-        </div>
-      </section>
-
-      <section id="contatti">
-        <h2>Contattami</h2>
-        <p>Compila il form per scrivermi. Ti rispondo entro 24 ore.</p>
-
-        <button id="apri-contatti">Scrivimi</button>
-      </section>
-
-    </main>
-
-    <a href="#" class="back-to-top" aria-label="Torna in cima">↑</a>
-
-    <div id="overlay-contatti" class="overlay" hidden>
-      <div class="modal">
-        <button class="close" id="chiudi-contatti" aria-label="Chiudi">×</button>
-
-        <form action="#" method="POST">
-
-          <p>
-            <label for="nome">Nome</label><br>
-            <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required>
-          </p>
-
-          <p>
-            <label for="email">Email</label><br>
-            <input type="email" id="email" name="email" placeholder="tu@esempio.it" required>
-          </p>
-
-          <p>
-            <label for="motivo">Motivo del contatto</label><br>
-            <select id="motivo" name="motivo">
-              <option value="lavoro">Proposta di lavoro</option>
-              <option value="collaborazione">Collaborazione su un progetto</option>
-              <option value="info">Richiesta di informazioni</option>
-              <option value="altro">Altro</option>
-            </select>
-          </p>
-
-          <p>
-            <label for="data">Data preferita per la risposta</label><br>
-            <input type="date" id="data" name="data">
-          </p>
-
-          <p>
-            <label for="messaggio">Messaggio</label><br>
-            <textarea id="messaggio" name="messaggio" rows="5" placeholder="Scrivi qui il tuo messaggio..." required></textarea>
-          </p>
-
-          <p>
-            <input type="checkbox" id="consenso" name="consenso" required>
-            <label for="consenso">Accetto di essere ricontattato all'indirizzo indicato</label>
-          </p>
-
-          <p>
-            <button type="submit">Invia</button>
-          </p>
-
-        </form>
       </div>
+    </section>
+
+    <section id="progetti">
+      <h2>Progetti</h2>
+      <p>I lavori fatti durante le prime settimane di corso.</p>
+
+      <div class="projects-grid">
+        <article class="project">
+          <h3>Pagina ricetta</h3>
+          <p>Una pagina con titolo, ingredienti e procedura. Esercizio di markup semantico applicato a un contenuto
+            reale.</p>
+          <p><a href="https://github.com/mariorossi/ricetta" target="_blank">Vedi su GitHub</a></p>
+        </article>
+
+        <article class="project">
+          <h3>Card di presentazione</h3>
+          <p>Un biglietto digitale con nome, ruolo e link ai social.</p>
+          <p><a href="https://github.com/mariorossi/card" target="_blank">Vedi su GitHub</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contatti">
+      <h2>Contattami</h2>
+      <p>Compila il form per scrivermi. Ti rispondo entro 24 ore.</p>
+
+      <button id="apri-contatti">Scrivimi</button>
+    </section>
+
+  </main>
+
+  <a href="#" class="back-to-top" aria-label="Torna in cima">↑</a>
+
+  <div id="overlay-contatti" class="overlay" hidden>
+    <div class="modal">
+      <button class="close" id="chiudi-contatti" aria-label="Chiudi">×</button>
+
+      <form action="#" method="POST">
+
+        <p>
+          <label for="nome">Nome</label><br>
+          <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required>
+        </p>
+
+        <p>
+          <label for="email">Email</label><br>
+          <input type="email" id="email" name="email" placeholder="tu@esempio.it" required>
+        </p>
+
+        <p>
+          <label for="motivo">Motivo del contatto</label><br>
+          <select id="motivo" name="motivo">
+            <option value="lavoro">Proposta di lavoro</option>
+            <option value="collaborazione">Collaborazione su un progetto</option>
+            <option value="info">Richiesta di informazioni</option>
+            <option value="altro">Altro</option>
+          </select>
+        </p>
+
+        <p>
+          <label for="data">Data preferita per la risposta</label><br>
+          <input type="date" id="data" name="data">
+        </p>
+
+        <p>
+          <label for="messaggio">Messaggio</label><br>
+          <textarea id="messaggio" name="messaggio" rows="5" placeholder="Scrivi qui il tuo messaggio..."
+            required></textarea>
+        </p>
+
+        <p>
+          <input type="checkbox" id="consenso" name="consenso" required>
+          <label for="consenso">Accetto di essere ricontattato all'indirizzo indicato</label>
+        </p>
+
+        <p>
+          <button type="submit">Invia</button>
+        </p>
+
+      </form>
     </div>
+  </div>
 
-    <footer id="site-footer">
-      <p>© 2026 Mario Rossi</p>
-    </footer>
+  <footer id="site-footer">
+    <p>© 2026 Mario Rossi</p>
+  </footer>
 
-    <script src="assets/js/script.js"></script>
+  <script src="assets/js/script.js"></script>
 
-  </body>
+</body>
+
 </html>

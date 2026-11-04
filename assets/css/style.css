@@ -3,9 +3,10 @@
    Settimana V, Giorno II: positioning (sticky, absolute, fixed, modal).
    Settimana V, Giorno III: Flexbox (nav, Chi sono, chips, griglia progetti). */
 
-
 /* Reset minimale */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -25,7 +26,6 @@ html {
   }
 }
 
-
 /* Body: tipografia di base */
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
@@ -35,13 +35,11 @@ body {
   background-color: #fafafa;
 }
 
-
 /* Immagini fluide di default */
 img {
   max-width: 100%;
   height: auto;
 }
-
 
 /* Header — mobile-first */
 #site-header {
@@ -82,7 +80,6 @@ img {
   }
 }
 
-
 /* Nav — flex container: i <li> sono flex item e vanno a capo con wrap */
 #site-header nav ul {
   list-style: none;
@@ -110,7 +107,6 @@ img {
   background-color: rgba(255, 255, 255, 0.15);
 }
 
-
 /* Main centrato — mobile-first */
 main {
   max-width: 920px;
@@ -123,7 +119,6 @@ main {
     padding: 40px 20px;
   }
 }
-
 
 /* Sezioni come card */
 main section {
@@ -141,7 +136,6 @@ main section {
     margin-bottom: 24px;
   }
 }
-
 
 /* Titoli del main con marker */
 h2 {
@@ -163,7 +157,6 @@ h3 {
   text-align: left;
   line-height: 1.6;
 }
-
 
 /* Chi sono — avatar e testo con flex: colonna su mobile, riga da 768px */
 .bio {
@@ -215,7 +208,6 @@ h3 {
   }
 }
 
-
 /* Competenze come chips (pillole), vanno a capo da sole */
 .skill-list {
   display: flex;
@@ -238,7 +230,6 @@ h3 {
   color: hsl(220, 40%, 15%);
   font-weight: bold;
 }
-
 
 /* Tabella esperienze — wrapper con scroll orizzontale su mobile */
 .table-wrapper {
@@ -264,7 +255,6 @@ h3 {
   color: #666;
   padding: 8px 0;
 }
-
 
 /* Griglia progetti — flex con wrap: lo spazio fra le card lo dà il gap */
 .projects-grid {
@@ -302,7 +292,6 @@ h3 {
   font-size: 0.75rem;
   font-weight: bold;
 }
-
 
 /* Form contatti — mobile-first */
 label {
@@ -370,7 +359,6 @@ button:hover {
   }
 }
 
-
 /* Back-to-top — fisso in basso a destra */
 .back-to-top {
   position: fixed;
@@ -392,7 +380,6 @@ button:hover {
 .back-to-top:hover {
   background-color: hsl(220, 60%, 45%);
 }
-
 
 /* Overlay — copre tutta la finestra */
 .overlay {
@@ -454,7 +441,6 @@ button:hover {
   color: hsl(0, 70%, 50%);
   background: none;
 }
-
 
 /* Footer */
 #site-footer {
