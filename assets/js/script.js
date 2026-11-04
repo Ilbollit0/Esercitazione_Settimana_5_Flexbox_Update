@@ -14,7 +14,9 @@ function chiudiModal() {
 document.getElementById("apri-contatti").addEventListener("click", apriModal);
 
 // chiude con la X
-document.getElementById("chiudi-contatti").addEventListener("click", chiudiModal);
+document
+  .getElementById("chiudi-contatti")
+  .addEventListener("click", chiudiModal);
 
 // chiude cliccando sull'overlay scuro (fuori dal modal)
 overlay.addEventListener("click", (event) => {
