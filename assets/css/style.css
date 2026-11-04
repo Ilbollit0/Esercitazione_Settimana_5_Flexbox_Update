@@ -1,0 +1,474 @@
+/* Portfolio Page — Settimana V, Giorno I
+   Refactoring in ottica responsive (mobile-first).
+   Settimana V, Giorno II: positioning (sticky, absolute, fixed, modal).
+   Settimana V, Giorno III: Flexbox (nav, Chi sono, chips, griglia progetti). */
+
+
+/* Reset minimale */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* L'header sticky copre la parte alta della finestra: quando clicchi un link
+   del nav, la sezione si ferma sotto l'header invece che dietro. */
+html {
+  scroll-padding-top: 350px; /* su schermi stretti il nav va su 3 righe */
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 360px;
+  }
+}
+
+
+/* Body: tipografia di base */
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #2b2b2b;
+  background-color: #fafafa;
+}
+
+
+/* Immagini fluide di default */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* Header — mobile-first */
+#site-header {
+  background-color: hsl(220, 40%, 20%);
+  background-image: url("../img/header-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.8;
+  padding: 30px 16px 20px;
+  border-bottom: 4px solid hsl(45, 90%, 60%);
+  /* header sempre visibile durante lo scroll */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+#site-header h1 {
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-weight: bold;
+  font-style: italic;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 8px 0;
+}
+
+.tagline {
+  color: rgb(220, 220, 220);
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+/* Tablet+ */
+@media (min-width: 768px) {
+  #site-header {
+    padding: 60px 20px 40px;
+    line-height: 2.4;
+  }
+}
+
+
+/* Nav — flex container: i <li> sono flex item e vanno a capo con wrap */
+#site-header nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+}
+
+#site-header nav a {
+  color: hsl(45, 90%, 70%);
+  font-weight: bold;
+  display: block; /* il <li> è già un flex item: basta block per il padding */
+  padding: 8px 14px;
+  margin: 2px;
+  border-radius: 4px;
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+#site-header nav a:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+
+/* Main centrato — mobile-first */
+main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+@media (min-width: 768px) {
+  main {
+    padding: 40px 20px;
+  }
+}
+
+
+/* Sezioni come card */
+main section {
+  background-color: #ffffff;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 768px) {
+  main section {
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+}
+
+
+/* Titoli del main con marker */
+h2 {
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  color: hsl(220, 60%, 30%);
+  text-align: left;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+main section h2::before {
+  content: "— ";
+  color: hsl(45, 90%, 50%);
+}
+
+h3 {
+  font-size: 1.15rem;
+  color: hsl(220, 30%, 25%);
+  text-align: left;
+  line-height: 1.6;
+}
+
+
+/* Chi sono — avatar e testo con flex: colonna su mobile, riga da 768px */
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border: 4px solid hsl(45, 90%, 60%);
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  flex-shrink: 0; /* l'avatar non si rimpicciolisce */
+}
+
+#chi-sono {
+  text-align: left;
+}
+
+#chi-sono p:first-of-type {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: hsl(220, 30%, 25%);
+}
+
+@media (min-width: 768px) {
+  .bio {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .avatar {
+    margin: 0;
+  }
+  #chi-sono {
+    text-align: justify;
+  }
+  #chi-sono p:first-of-type {
+    font-size: 1.15rem;
+  }
+  #chi-sono p:first-of-type::first-letter {
+    font-size: 3rem;
+    font-weight: bold;
+    float: left;
+    margin-right: 6px;
+    color: hsl(220, 60%, 30%);
+  }
+}
+
+
+/* Competenze come chips (pillole), vanno a capo da sole */
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-list li {
+  background-color: hsl(220, 60%, 30%);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+/* la prima chip evidenziata in giallo */
+.skill-list li:first-child {
+  background-color: hsl(45, 90%, 60%);
+  color: hsl(220, 40%, 15%);
+  font-weight: bold;
+}
+
+
+/* Tabella esperienze — wrapper con scroll orizzontale su mobile */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-wrapper table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+}
+
+.table-wrapper th,
+.table-wrapper td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+.table-wrapper caption {
+  font-style: italic;
+  color: #666;
+  padding: 8px 0;
+}
+
+
+/* Griglia progetti — flex con wrap: lo spazio fra le card lo dà il gap */
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Progetti alternati + badge NEW sul primo */
+.project {
+  position: relative; /* riferimento per il badge absolute */
+  flex: 1 1 260px; /* cresce, si stringe, base 260px */
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.project:nth-of-type(odd) {
+  background-color: hsl(45, 60%, 96%);
+}
+
+.project:nth-of-type(even) {
+  background-color: #ffffff;
+}
+
+/* badge ancorato all'angolo in alto a destra della prima card */
+.project:first-of-type::after {
+  content: "NEW";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px 12px;
+  background-color: hsl(0, 70%, 50%);
+  color: #ffffff;
+  border-radius: 0 4px 0 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+
+/* Form contatti — mobile-first */
+label {
+  font-weight: bold;
+  color: hsl(220, 60%, 25%);
+}
+
+input,
+textarea,
+select {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px; /* evita zoom iOS al focus */
+  width: 100%;
+  background-color: #f5f7fb;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  background-color: #ffffff;
+  color: #000000;
+  outline: 2px solid hsl(220, 60%, 45%);
+}
+
+#consenso {
+  width: auto;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #999999;
+  font-style: italic;
+}
+
+button {
+  color: #ffffff;
+  background-color: hsl(220, 60%, 30%);
+  font-weight: bold;
+  width: 100%;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  color: hsl(45, 90%, 80%);
+  background-color: hsl(220, 60%, 45%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 768px) {
+  input,
+  textarea,
+  select {
+    width: 60%;
+  }
+  button {
+    width: auto;
+    min-width: 30%;
+  }
+}
+
+
+/* Back-to-top — fisso in basso a destra */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: hsl(220, 60%, 30%);
+  color: #ffffff;
+  text-align: center;
+  line-height: 48px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 50;
+}
+
+.back-to-top:hover {
+  background-color: hsl(220, 60%, 45%);
+}
+
+
+/* Overlay — copre tutta la finestra */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.overlay[hidden] {
+  display: none;
+}
+
+/* Modal — centrato dentro l'overlay */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto; /* il form è lungo: scorre dentro il modal */
+}
+
+/* nel modal i campi occupano tutta la larghezza */
+.modal input,
+.modal textarea,
+.modal select {
+  width: 100%;
+}
+
+.modal #consenso {
+  width: auto;
+}
+
+/* bottone X ancorato all'angolo del modal */
+.modal .close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: auto;
+  min-width: 0;
+  padding: 4px 10px;
+  background: none;
+  box-shadow: none;
+  color: #2b2b2b;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.modal .close:hover {
+  color: hsl(0, 70%, 50%);
+  background: none;
+}
+
+
+/* Footer */
+#site-footer {
+  background-color: hsl(220, 40%, 15%);
+  color: #ffffff;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 2;
+  padding: 20px 16px;
+}
+
+@media (min-width: 768px) {
+  #site-footer {
+    line-height: 2.4;
+    padding: 30px 20px;
+  }
+}
