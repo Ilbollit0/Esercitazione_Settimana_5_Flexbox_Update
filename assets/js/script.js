@@ -6,8 +6,15 @@ function apriModal() {
 }
 
 function chiudiModal() {
-  overlay.setAttribute("hidden", "");
-  document.body.style.overflow = "";
+  // aggiunge la classe che fa partire l'animazione di uscita
+  overlay.classList.add("closing");
+
+  // dopo 200ms (durata dell'animazione) nasconde l'overlay e toglie la classe
+  setTimeout(() => {
+    overlay.setAttribute("hidden", "");
+    overlay.classList.remove("closing");
+    document.body.style.overflow = "";
+  }, 200);
 }
 
 // apre il modal

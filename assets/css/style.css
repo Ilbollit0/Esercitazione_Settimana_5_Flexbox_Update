@@ -1,7 +1,8 @@
 /* Portfolio Page — Settimana V, Giorno I
    Refactoring in ottica responsive (mobile-first).
    Settimana V, Giorno II: positioning (sticky, absolute, fixed, modal).
-   Settimana V, Giorno III: Flexbox (nav, Chi sono, chips, griglia progetti). */
+   Settimana V, Giorno III: Flexbox (nav, Chi sono, chips, griglia progetti).
+   Settimana V, Giorno IV: transition, transform, @keyframes e animation. */
 
 /* Reset minimale */
 *,
@@ -100,11 +101,17 @@ img {
   border-radius: 4px;
   line-height: 1.6;
   text-decoration: none;
+  /* la transition va sulla regola neutra: anima sia in entrata che in uscita */
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    transform 200ms ease;
 }
 
 #site-header nav a:hover {
   color: #ffffff;
   background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px); /* il link si solleva leggermente */
 }
 
 /* Main centrato — mobile-first */
@@ -128,6 +135,36 @@ main section {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  /* both: parte da opacity 0 durante il delay e resta a 1 alla fine */
+  animation: section-in 500ms ease-out both;
+}
+
+@keyframes section-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* entrata scaglionata delle 5 sezioni */
+main section:nth-of-type(1) {
+  animation-delay: 0ms;
+}
+main section:nth-of-type(2) {
+  animation-delay: 80ms;
+}
+main section:nth-of-type(3) {
+  animation-delay: 160ms;
+}
+main section:nth-of-type(4) {
+  animation-delay: 240ms;
+}
+main section:nth-of-type(5) {
+  animation-delay: 320ms;
 }
 
 @media (min-width: 768px) {
@@ -173,6 +210,11 @@ h3 {
   display: block;
   margin: 0 auto;
   flex-shrink: 0; /* l'avatar non si rimpicciolisce */
+  transition: transform 300ms ease;
+}
+
+.avatar:hover {
+  transform: scale(1.05) rotate(-2deg); /* più transform in UNA dichiarazione */
 }
 
 #chi-sono {
@@ -222,6 +264,15 @@ h3 {
   color: #fff;
   padding: 6px 14px;
   border-radius: 999px;
+  transition:
+    transform 150ms ease,
+    background-color 150ms ease;
+}
+
+/* al hover la pillola si alza leggermente */
+.skill-list li:hover {
+  transform: translateY(-2px);
+  background-color: hsl(220, 60%, 40%);
 }
 
 /* la prima chip evidenziata in giallo */
@@ -269,6 +320,16 @@ h3 {
   flex: 1 1 260px; /* cresce, si stringe, base 260px */
   padding: 12px;
   border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 200ms ease-out,
+    box-shadow 200ms ease-out;
+}
+
+/* effetto lift: la card si alza e l'ombra cresce */
+.project:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
 }
 
 .project:nth-of-type(odd) {
@@ -291,6 +352,19 @@ h3 {
   border-radius: 0 4px 0 4px;
   font-size: 0.75rem;
   font-weight: bold;
+  /* extra 11: cubic-bezier con overshoot al posto di ease-in-out */
+  animation: pulse-badge 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+  transform-origin: top right;
+}
+
+@keyframes pulse-badge {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
 }
 
 /* Form contatti — mobile-first */
@@ -375,10 +449,29 @@ button:hover {
   text-decoration: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   z-index: 50;
+  animation: pulse-ring 2.2s ease-out infinite;
+  transition:
+    transform 200ms ease,
+    background-color 200ms ease;
 }
 
 .back-to-top:hover {
   background-color: hsl(220, 60%, 45%);
+  transform: scale(1.08);
+}
+
+/* anello che si espande e svanisce (la prima ombra resta fissa) */
+@keyframes pulse-ring {
+  0% {
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.2),
+      0 0 0 0 rgba(34, 76, 161, 0.6);
+  }
+  100% {
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.2),
+      0 0 0 18px rgba(34, 76, 161, 0);
+  }
 }
 
 /* Overlay — copre tutta la finestra */
@@ -409,6 +502,64 @@ button:hover {
   max-width: 480px;
   max-height: 90vh;
   overflow-y: auto; /* il form è lungo: scorre dentro il modal */
+}
+
+/* Modal — entrata: l'overlay sfuma, il box sale */
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.overlay:not([hidden]) {
+  animation: overlay-in 200ms ease-out;
+}
+
+.overlay:not([hidden]) .modal {
+  animation: modal-in 300ms ease-out;
+}
+
+/* Extra 12 — uscita: script.js aggiunge .closing, attende 200ms, poi setta hidden */
+@keyframes overlay-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modal-out {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+}
+
+.overlay.closing {
+  animation: overlay-out 200ms ease-in forwards;
+}
+
+.overlay.closing .modal {
+  animation: modal-out 200ms ease-in forwards;
 }
 
 /* nel modal i campi occupano tutta la larghezza */
@@ -456,5 +607,16 @@ button:hover {
   #site-footer {
     line-height: 2.4;
     padding: 30px 20px;
+  }
+}
+
+/* Accessibilità — chi chiede "meno animazioni" al sistema operativo non le vede */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
